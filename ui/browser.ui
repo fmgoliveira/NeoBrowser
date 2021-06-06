@@ -205,6 +205,9 @@ color: #E8960C;</string>
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
+           <property name="toolTip">
+            <string>Minimize</string>
+           </property>
            <property name="text">
             <string>-</string>
            </property>
@@ -226,6 +229,9 @@ color: #E8960C;</string>
            </property>
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="toolTip">
+            <string>Maximize</string>
            </property>
            <property name="text">
             <string></string>
@@ -249,6 +255,9 @@ color: #E8960C;</string>
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
+           <property name="toolTip">
+            <string>Close</string>
+           </property>
            <property name="text">
             <string>X</string>
            </property>
@@ -259,7 +268,7 @@ color: #E8960C;</string>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QPushButton" name="btn_minimize_6">
+          <widget class="QPushButton" name="btn_previous">
            <property name="minimumSize">
             <size>
              <width>25</width>
@@ -274,6 +283,9 @@ color: #E8960C;</string>
            </property>
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="toolTip">
+            <string>Go to previous page</string>
            </property>
            <property name="text">
             <string>⬅</string>
@@ -281,7 +293,7 @@ color: #E8960C;</string>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="btn_minimize_5">
+          <widget class="QPushButton" name="btn_next">
            <property name="minimumSize">
             <size>
              <width>25</width>
@@ -296,6 +308,9 @@ color: #E8960C;</string>
            </property>
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="toolTip">
+            <string>Go to next page</string>
            </property>
            <property name="text">
             <string>➡</string>
@@ -303,7 +318,7 @@ color: #E8960C;</string>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="btn_minimize_4">
+          <widget class="QPushButton" name="btn_reload">
            <property name="minimumSize">
             <size>
              <width>25</width>
@@ -318,6 +333,9 @@ color: #E8960C;</string>
            </property>
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="toolTip">
+            <string>Reload page</string>
            </property>
            <property name="text">
             <string>⟲</string>
@@ -341,13 +359,35 @@ color: #E8960C;</string>
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
+           <property name="toolTip">
+            <string>Open start page</string>
+           </property>
            <property name="text">
             <string>⌂</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit"/>
+          <widget class="QLineEdit" name="lineEdit">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(31,31,31);
+border-radius: 5px;
+color: rgb(184, 184, 184);
+padding-left: 8px;</string>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="btn_minimize_2">
@@ -365,6 +405,9 @@ color: #E8960C;</string>
            </property>
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="toolTip">
+            <string>Options</string>
            </property>
            <property name="text">
             <string>⚙</string>
@@ -387,10 +430,182 @@ color: #E8960C;</string>
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="styleSheet">
+          <string notr="true">QTabWidget::scroller {
+	width: 0px;
+}
+
+QTabWidget::pane {
+    background: #35363A;
+}
+
+QTabWidget::tab-bar:top {
+    top: 1px;
+}
+
+QTabWidget::tab-bar:bottom {
+    bottom: 1px;
+}
+
+QTabWidget::tab-bar:left {
+    right: 1px;
+}
+
+QTabWidget::tab-bar:right {
+    left: 1px;
+}
+
+QTabBar::tab:selected {
+    background: #35363A;
+	color: #fff;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+QTabBar::tab:!selected {
+    border-right: 1px solid #C7CBCF;
+	border-left: 1px solid #C7CBCF;
+	background: #202124;
+	color: #BEC2C7;
+}
+
+QTabBar::tab:!selected:hover {
+    background: #2F3034;
+	color: #BEC2C7;
+}
+
+QTabBar::tab:top:!selected {
+    margin-top: 1px;
+}
+
+QTabBar::tab:bottom:!selected {
+    margin-bottom: 1px;
+}
+
+QTabBar::tab:top, QTabBar::tab:bottom {
+    min-width: 24ex;
+    margin-right: -1px;
+    padding: 10px;
+}
+
+QTabBar::tab:top:selected {
+    border-bottom-color: none;
+}
+
+QTabBar::tab:bottom:selected {
+    border-top-color: none;
+}
+
+QTabBar::tab:top:last, QTabBar::tab:bottom:last,
+QTabBar::tab:top:only-one, QTabBar::tab:bottom:only-one {
+    margin-right: 0;
+}
+
+QTabBar::tab:left:!selected {
+    margin-right: 3px;
+}
+
+QTabBar::tab:right:!selected {
+    margin-left: 3px;
+}
+
+QTabBar::tab:left, QTabBar::tab:right {
+    min-height: 8ex;
+    margin-bottom: -1px;
+    padding: 10px 5px 10px 5px;
+}
+
+QTabBar::tab:left:selected {
+    border-left-color: none;
+}
+
+QTabBar::tab:right:selected {
+    border-right-color: none;
+}
+
+QTabBar::tab:left:last, QTabBar::tab:right:last,
+QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
+    margin-bottom: 0;
+}
+
+QTabBar::close-button {
+	background: rgba(0,0,0,0);
+    image: url(:/img/img/cross.png);
+    subcontrol-position: left;
+	border-radius: 7px;
+	padding: 2px;
+ }
+
+QTabBar::close-button:hover {
+	background: #505053;
+cursor: pointing-hand
+}</string>
+         </property>
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <property name="elideMode">
+          <enum>Qt::ElideLeft</enum>
+         </property>
+         <property name="usesScrollButtons">
+          <bool>true</bool>
+         </property>
+         <property name="tabsClosable">
+          <bool>true</bool>
+         </property>
+         <property name="movable">
+          <bool>true</bool>
+         </property>
+         <property name="tabBarAutoHide">
+          <bool>false</bool>
+         </property>
+         <widget class="QWidget" name="tab">
+          <attribute name="title">
+           <string>Tab 1</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="tab_2">
+          <attribute name="title">
+           <string>Tab 2</string>
+          </attribute>
+         </widget>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
     <item>
      <widget class="QFrame" name="bottom_frame">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>35</height>
+       </size>
+      </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(45, 45, 45);
 border-bottom-left-radius: 20px;
@@ -403,11 +618,53 @@ border-bottom-right-radius: 20px;
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="leftMargin">
+        <number>9</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frame_2">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="resize_frame">
+         <property name="minimumSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>25</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="file_rc.qrc"/>
+ </resources>
  <connections/>
 </ui>
