@@ -107,4 +107,4 @@ class Ui_SplashScreen(object):
         self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-weight:600;\">YOUR </span>DREAM WEB BROWSER</p></body></html>"))
         self.label_3.setText(_translate("MainWindow", "<html><head/><body><p>loading...</p></body></html>"))
         self.label_4.setText(_translate("MainWindow", "<b>Created by</b> Francisco Oliveira"))
-import components.file_rc
+from components import file_rc

@@ -19,18 +19,19 @@ from PyQt5.QtWidgets import *
 from components.ui_splash_screen import Ui_SplashScreen
 
 # ==> MAIN WINDOW
-#from components.ui_browser import Ui_MainWindow
+from components.ui_browser import Ui_Browser
 
 # ==> GLOBALS
 counter = 0
 
 # YOUR APPLICATION
-"""class MainWindow(QMainWindow):
+
+
+class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
-        self.ui = Ui_MainWindow()
+        self.ui = Ui_Browser()
         self.ui.setupUi(self)
-"""
 
 
 # SPLASH SCREEN
@@ -92,11 +93,11 @@ class SplashScreen(QMainWindow):
             self.timer.stop()
 
             # SHOW MAIN WINDOW
-            """self.main = MainWindow()
+            self.main = MainWindow()
             self.main.show()
 
             # CLOSE SPLASH SCREEN
-            self.close()"""
+            self.close()
 
         # INCREASE COUNTER
         counter += 1
