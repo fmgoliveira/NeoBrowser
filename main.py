@@ -13,6 +13,9 @@ from components.ui_splash_screen import Ui_SplashScreen
 # ==> MAIN WINDOW
 from components.ui_browser import Ui_Browser
 
+# ==> FUNCTIONS
+from functions.ui_functions import *
+
 # ==> GLOBALS
 counter = 0
 
@@ -24,6 +27,25 @@ class Browser(QMainWindow):
         QMainWindow.__init__(self)
         self.ui = Ui_Browser()
         self.ui.setupUi(self)
+
+
+        UIFunctions.UiDefinitions(self)
+        UIFunctions.maximize_restore(self)
+
+        def moveWindow(event):
+
+            if UIFunctions.returnStatus(self) == 1:
+                UIFunctions.maximize_restore(self)
+
+            if event.buttons() == Qt.LeftButton:
+                self.move(self.pos() + event.globalPos() - self.dragPos)
+                self.dragPos = event.globalPos()
+                event.accept()
+
+        self.ui.frame.mouseMoveEvent = moveWindow
+
+    def mousePressEvent(self, event):
+        self.dragPos = event.globalPos()
 
 
 # SPLASH SCREEN
