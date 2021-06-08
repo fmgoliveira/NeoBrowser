@@ -1,11 +1,3 @@
-################################################################################
-##
-# BY: FRANCISCO OLIVEIRA
-# PROJECT MADE WITH: Qt Designer and PyQt5
-# V: 1.0.0
-##
-################################################################################
-
 import sys
 import platform
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -27,7 +19,7 @@ counter = 0
 # YOUR APPLICATION
 
 
-class MainWindow(QMainWindow):
+class Browser(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui = Ui_Browser()
@@ -48,14 +40,6 @@ class SplashScreen(QMainWindow):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
-        # DROP SHADOW EFFECT
-        self.shadow = QGraphicsDropShadowEffect(self)
-        self.shadow.setBlurRadius(20)
-        self.shadow.setXOffset(0)
-        self.shadow.setYOffset(0)
-        self.shadow.setColor(QColor(0, 0, 0, 60))
-        self.ui.dropShadowFrame.setGraphicsEffect(self.shadow)
-
         # QTIMER ==> START
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.progress)
@@ -65,7 +49,8 @@ class SplashScreen(QMainWindow):
         # CHANGE DESCRIPTION
 
         # Initial Text
-        self.ui.label_2.setText("<strong>WELCOME</strong> TO NEO BROWSER")
+        self.ui.label_2.setText(
+            "<strong>WELCOME</strong> TO NEO BROWSER")
 
         # Change Texts
         QtCore.QTimer.singleShot(1500, lambda: self.ui.label_2.setText(
@@ -93,7 +78,7 @@ class SplashScreen(QMainWindow):
             self.timer.stop()
 
             # SHOW MAIN WINDOW
-            self.main = MainWindow()
+            self.main = Browser()
             self.main.show()
 
             # CLOSE SPLASH SCREEN

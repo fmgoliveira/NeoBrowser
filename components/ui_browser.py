@@ -345,4 +345,4 @@ class Ui_Browser(object):
         self.btn_minimize_2.setText(_translate("MainWindow", "⚙"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Tab 1"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
-from components import file_rc
+import components.file_rc
