@@ -15,6 +15,7 @@ from components.ui_browser import Ui_Browser
 
 # ==> FUNCTIONS
 from functions.ui_functions import *
+from functions.theme_functions import *
 
 # ==> GLOBALS
 counter = 0
@@ -28,6 +29,7 @@ class Browser(QMainWindow):
         self.ui = Ui_Browser()
         self.ui.setupUi(self)
 
+        ThemeFunctions.load_theme(self)
 
         UIFunctions.UiDefinitions(self)
         UIFunctions.maximize_restore(self)

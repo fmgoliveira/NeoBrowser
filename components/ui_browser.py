@@ -14,6 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Browser(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
+        MainWindow.setWindowIcon(QtGui.QIcon('img/logo.png'))
         MainWindow.resize(800, 575)
         MainWindow.setMinimumSize(QtCore.QSize(0, 500))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -27,8 +28,6 @@ class Ui_Browser(object):
         self.title_frame.setMaximumSize(QtCore.QSize(16777215, 80))
         self.title_frame.setStyleSheet("QFrame#title_frame {\n"
 "    background-color: rgb(20, 20, 20);\n"
-"    border-top-left-radius: 20px;\n"
-"    border-top-right-radius: 20px;\n"
 "}\n"
 "\n"
 "QPushButton {\n"
@@ -294,10 +293,6 @@ class Ui_Browser(object):
         self.bottom_frame = QtWidgets.QFrame(self.centralwidget)
         self.bottom_frame.setMinimumSize(QtCore.QSize(0, 35))
         self.bottom_frame.setMaximumSize(QtCore.QSize(16777215, 35))
-        self.bottom_frame.setStyleSheet("background-color: rgb(45, 45, 45);\n"
-"border-bottom-left-radius: 20px;\n"
-"border-bottom-right-radius: 20px;\n"
-"")
         self.bottom_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.bottom_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.bottom_frame.setObjectName("bottom_frame")
@@ -325,7 +320,7 @@ class Ui_Browser(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Neo Browser"))
         self.label_2.setText(_translate("MainWindow", "<b>NEO</b> BROWSER"))
         self.btn_minimize.setToolTip(_translate("MainWindow", "Minimize"))
         self.btn_minimize.setText(_translate("MainWindow", "-"))

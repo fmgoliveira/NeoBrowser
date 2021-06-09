@@ -10,6 +10,7 @@ class UIFunctions(Browser):
     def maximize_restore(self):
 
         global GLOBAL_STATE
+        global data
         status = GLOBAL_STATE
 
         if status == 0:
@@ -19,11 +20,7 @@ class UIFunctions(Browser):
 
             self.ui.verticalLayout.setContentsMargins(0,0,0,0)
 
-            self.ui.title_frame.setStyleSheet("QFrame#title_frame { background-color: rgb(20, 20, 20); }  QPushButton { background-color: rgba(0,0,0,0); color: rgb(144, 144, 144); font: bold; font-size: 15px; font-family: entypo; }  QPushButton:hover { color: #E8960C; }  QPushButton:pressed { color: #FF8000; padding-left: 5px; padding-top: 5px; }")
-            self.ui.bottom_frame.setStyleSheet("background-color: rgb(45, 45, 45)")
-
-            with open('config.json', 'w') as outfile:
-                data = {}
+            with open('config.json', 'w+') as outfile:
                 data["maximized"] = True
                 json.dump(data, outfile)
 
@@ -32,15 +29,11 @@ class UIFunctions(Browser):
             self.showNormal()
             self.resize(self.width()+1, self.height()+1)
 
-            with open('config.json', 'w') as outfile:
-                data = {}
+            with open('config.json', 'w+') as outfile:
                 data["maximized"] = False
                 json.dump(data, outfile)
 
             self.ui.verticalLayout.setContentsMargins(10,10,10,10)
-
-            self.ui.title_frame.setStyleSheet("QFrame#title_frame { background-color: rgb(20, 20, 20); border-top-left-radius: 20px; border-top-right-radius: 20px; }  QPushButton { background-color: rgba(0,0,0,0); color: rgb(144, 144, 144); font: bold; font-size: 15px; font-family: entypo; }  QPushButton:hover { color: #E8960C; }  QPushButton:pressed { color: #FF8000; padding-left: 5px; padding-top: 5px; }")
-            self.ui.bottom_frame.setStyleSheet("background-color: rgb(45, 45, 45); border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; ")
 
     def UiDefinitions(self):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
