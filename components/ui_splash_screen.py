@@ -14,6 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_SplashScreen(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
+        MainWindow.setWindowIcon(QtGui.QIcon('img/logo.png'))
         MainWindow.resize(500, 330)
         MainWindow.setMinimumSize(QtCore.QSize(500, 330))
         MainWindow.setMaximumSize(QtCore.QSize(500, 330))
@@ -102,7 +103,7 @@ class Ui_SplashScreen(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Neo Updater"))
         self.label.setText(_translate("MainWindow", "<b>NEO</b> BROWSER"))
         self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-weight:600;\">YOUR </span>DREAM WEB BROWSER</p></body></html>"))
         self.label_3.setText(_translate("MainWindow", "<html><head/><body><p>loading...</p></body></html>"))

@@ -9,6 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import *
+import sys
 
 
 class Ui_Browser(object):
@@ -296,6 +298,7 @@ class Ui_Browser(object):
         self.bottom_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.bottom_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.bottom_frame.setObjectName("bottom_frame")
+        self.bottom_frame.setStyleSheet("background-color: rgb(45,45,45); border-bottom-left-radius: 20px; border-bottom-right-radius: 20px")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.bottom_frame)
         self.horizontalLayout.setContentsMargins(9, 0, -1, -1)
         self.horizontalLayout.setObjectName("horizontalLayout")
