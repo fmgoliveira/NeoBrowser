@@ -26,90 +26,25 @@
             transition: background-color 0.6s ease, color 1s ease;
         }
         
-        .switch {
-            width: 55px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .switch div {
-            position: relative;
-            display: block;
-            background: #eee;
-            width: 30px;
-            border-radius: 50px;
-            padding: 0 5px;
-            box-sizing: border-box;
-            cursor: pointer;
-        }
-        
-        .fa-adjust {
-            transform: rotate(180deg);
-        }
-        
-        .switch input {
-            display: none;
-        }
-        
-        .slider {
-            background-color: #999;
-            transition: 0.4s;
-            border-radius: 34px;
-            height: 12px;
-            width: 12px;
-            display: inline-block;
-            position: relative;
-        }
-        
         input:checked+.slider {
             transform: translateX(8px);
         }
-        
-        nav {
-            font-size: 1.1rem;
-            position: relative;
-            background: var(--navBg);
+
+        h1 {
+            font-family: Arial, Helvetica, sans-serif;
         }
-        
-        nav ul {
-            list-style-type: none;
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            flex-wrap: wrap;
-            height: var(--navHeight);
-            padding: 0 10px;
-        }
-        
-        nav ul li {
-            padding: 12px 10px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            border-radius: 4px;
-            position: relative;
+
+        a {
+            text-decoration: none;
         }
         
         body {
             background: var(--mainBg);
             height: calc(100vh - var(--navHeight));
+            text-decoration: none;
         }
         
         .light-theme {
-            --themeDropDownBg: var(--goldCrayola);
-            --themeIconBorderColor: var(--sage);
-            --navBg: var(--sage);
-            --navLinkHoverBg: var(--paleSpringBud);
-            --mainBg: var(--goldCrayola);
-            --fontColor: var(--black);
-            --inputBg: var(--white);
-            --borderColor: var(--white)
-        }
-        
-        .dark-theme {
             --themeDropDownBg: var(--darkGray);
             --themeIconBorderColor: var(--darkGray);
             --navBg: var(--darkGray);
@@ -141,19 +76,6 @@
 
 <body class="light-theme">
     <header>
-        <nav>
-            <ul>
-                <li>
-                    <label class="switch">
-              
-              <div>
-                <input type="checkbox" />
-                <span class="slider round"></span>
-              </div>
-            </label>
-
-            </ul>
-        </nav>
     </header>
 
     <div align="center">
@@ -161,13 +83,33 @@
         <br>
         <br>
         <br>
+        <br>
         <a href="https://www.google.com/">
-            <img class="search-engine-logo" src="../images/searchEngineLogos/ecosiaBig.png" alt=""></a>
+            <img class="search-engine-logo" src="../img/google.png" alt=""></a>
         <br>
         <br>
-        <form action="https://www.ecosia.org/search" method="GET">
-            <input data-v-126b1b98="" placeholder="Search the Web..." aria-label="" type="search" name="q" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" autofocus="autofocus" required="required" data-test-id="search-form-input" class="input">
+        <form action="https://google.com/search" method="GET">
+            <input data-v-126b1b98="" placeholder="Search in the Web..." aria-label="" type="search" name="q" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" autofocus="autofocus" required="required" data-test-id="search-form-input" class="input">
         </form>
+    </div>
+
+    <div align="center">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <a href="http://google.com">
+            <img src="../img/logo.png" alt="">
+            <br>
+            <br>
+            <br>
+            <h1><strong>NEO</strong> BROWSER</h1>
+        </a>
+        
     </div>
 </body>
 

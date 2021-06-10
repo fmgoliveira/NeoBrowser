@@ -1,11 +1,12 @@
 import sys
 import platform
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
 from PyQt5.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime,
                           QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
 from PyQt5.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase,
                          QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
 from PyQt5.QtWidgets import *
+from PyQt5.QtWebEngineWidgets import *
 
 # ==> SPLASH SCREEN
 from components.ui_splash_screen import Ui_SplashScreen
@@ -287,6 +288,34 @@ class SplashScreen(QMainWindow):
 
         # INCREASE COUNTER
         counter += 1
+
+
+class WebEnginePage(QtWebEngineWidgets.QWebEnginePage):
+    def __init__(self, parent=None):
+        super(WebEnginePage, self).__init__(parent)
+        self.featurePermissionRequested.connect(
+            self.handleFeaturePermissionRequested)
+
+    @QtCore.pyqtSlot(QtCore.QUrl, QtWebEngineWidgets.QWebEnginePage.Feature)
+    def handleFeaturePermissionRequested(self, securityOrigin, feature):
+        title = "Permission Request"
+        questionForFeature = {
+            QtWebEngineWidgets.QWebEnginePage.Geolocation: "Allow {feature} to access your location information?",
+            QtWebEngineWidgets.QWebEnginePage.MediaAudioCapture: "Allow {feature} to access your microphone?",
+            QtWebEngineWidgets.QWebEnginePage.MediaVideoCapture: "Allow {feature} to access your webcam?",
+            QtWebEngineWidgets.QWebEnginePage.MediaAudioVideoCapture: "Allow {feature} to lock your mouse cursor?",
+            QtWebEngineWidgets.QWebEnginePage.DesktopVideoCapture: "Allow {feature} to capture video of your desktop?",
+            QtWebEngineWidgets.QWebEnginePage.DesktopAudioVideoCapture: "Allow {feature} to capture audio and video of your desktop?"
+        }
+        question = questionForFeature.get(feature)
+        if question:
+            question = question.format(feature=securityOrigin.host())
+            if QtWidgets.QMessageBox.question(self.view().window(), title, question) == QtWidgets.QMessageBox.Yes:
+                self.setFeaturePermission(
+                    securityOrigin, feature, QtWebEngineWidgets.QWebEnginePage.PermissionGrantedByUser)
+            else:
+                self.setFeaturePermission(
+                    securityOrigin, feature, QtWebEngineWidgets.QWebEnginePage.PermissionDeniedByUser)
 
 
 if __name__ == "__main__":
