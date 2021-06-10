@@ -13,16 +13,157 @@ from components.ui_splash_screen import Ui_SplashScreen
 # ==> MAIN WINDOW
 from components.ui_browser import Ui_Browser
 
+# ==> AUXILIAR WINDOWS
+from components.ui_options import Ui_Options
+from components.ui_shortcuts import Ui_Shortcuts
+
 # ==> FUNCTIONS
 from functions.ui_functions import *
+from functions.browser_functions import *
 
 # ==> GLOBALS
 counter = 0
 
-# YOUR APPLICATION
+# OPTIONS MENU
+
+
+class Options(QMainWindow):
+
+    def shortcuts(self):
+        self.app = Shortcuts()
+        self.app.show()
+        self.close()
+
+    def add_tab(self):
+        pass
+
+    def print(self):
+        pass
+
+    def open_file(self):
+        pass
+
+    def save_page(self):
+        pass
+
+    def view_source_code(self):
+        pass
+
+    def about(self):
+        pass
+
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.ui = Ui_Options()
+        self.ui.setupUi(self)
+
+        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+
+        def moveWindow(event):
+
+            if event.buttons() == Qt.LeftButton:
+                self.move(self.pos() + event.globalPos() - self.dragPos)
+                self.dragPos = event.globalPos()
+                event.accept()
+
+        self.ui.dropShadowFrame.mouseMoveEvent = moveWindow
+
+        self.ui.btn_shortcuts.clicked.connect(self.shortcuts)
+        self.ui.btn_addTab.clicked.connect(self.add_tab)
+        self.ui.btn_print.clicked.connect(self.print)
+        self.ui.btn_open.clicked.connect(self.open_file)
+        self.ui.btn_save.clicked.connect(self.save_page)
+        self.ui.btn_code.clicked.connect(self.view_source_code)
+        self.ui.btn_about.clicked.connect(self.about)
+
+        self.shortcut_close = QShortcut(QKeySequence('Esc'), self)
+        self.shortcut_close.activated.connect(lambda: self.close())
+
+    def mousePressEvent(self, event):
+        self.dragPos = event.globalPos()
+
+# SHORTCUTS MENU
+
+
+class Shortcuts(QMainWindow):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.ui = Ui_Shortcuts()
+        self.ui.setupUi(self)
+
+        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+
+        def moveWindow(event):
+
+            if event.buttons() == Qt.LeftButton:
+                self.move(self.pos() + event.globalPos() - self.dragPos)
+                self.dragPos = event.globalPos()
+                event.accept()
+
+        self.ui.dropShadowFrame.mouseMoveEvent = moveWindow
+
+        self.shortcut_close = QShortcut(QKeySequence('Esc'), self)
+        self.shortcut_close.activated.connect(lambda: self.close())
+
+    def mousePressEvent(self, event):
+        self.dragPos = event.globalPos()
+
+# BROWSER
 
 
 class Browser(QMainWindow):
+
+    def open_options(self):
+        self.options = Options()
+        self.options.show()
+
+    def tab_open_click(self, i):
+        print('here')
+        if i == -1:
+            self.add_tab()
+
+    def current_tab_changed(self, i):
+        pass
+
+    def close_current_tab(self, i):
+        if self.ui.tabWidget.count() < 2:
+            self.ui.tabWidget.removeTab(i)
+            self.add_tab()
+
+        self.tabs.removeTab(i)
+
+    def previous(self):
+        pass
+
+    def add_tab(self):
+        pass
+
+    def close_tab(self):
+        pass
+
+    def back_page(self):
+        pass
+
+    def next_page(self):
+        pass
+
+    def reload(self):
+        pass
+
+    def print(self):
+        pass
+
+    def open_file(self):
+        pass
+
+    def save_page(self):
+        pass
+
+    def view_source_code(self):
+        pass
+
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui = Ui_Browser()
@@ -43,11 +184,50 @@ class Browser(QMainWindow):
 
         self.ui.frame.mouseMoveEvent = moveWindow
 
+        self.ui.btn_options.clicked.connect(self.open_options)
+        self.ui.btn_previous.clicked.connect(self.back_page)
+
+        self.ui.tabWidget.tabBarDoubleClicked.connect(self.tab_open_click)
+        self.ui.tabWidget.currentChanged.connect(self.current_tab_changed)
+        self.ui.tabWidget.tabCloseRequested.connect(self.close_current_tab)
+
+        # ==> SHORTCUTS
+
+        self.shortcut_new_tab = QShortcut(QKeySequence('Ctrl+t'), self)
+        self.shortcut_new_tab.activated.connect(self.add_tab)
+
+        self.shortcut_close_tab = QShortcut(QKeySequence('Ctrl+w'), self)
+        self.shortcut_close_tab.activated.connect(self.close_tab)
+
+        self.shortcut_back = QShortcut(QKeySequence('Alt+left'), self)
+        self.shortcut_back.activated.connect(self.back_page)
+
+        self.shortcut_next = QShortcut(QKeySequence('Alt+right'), self)
+        self.shortcut_next.activated.connect(self.next_page)
+
+        self.shortcut_reload = QShortcut(QKeySequence('Ctrl+r'), self)
+        self.shortcut_reload.activated.connect(self.reload)
+
+        self.shortcut_print = QShortcut(QKeySequence('Ctrl+p'), self)
+        self.shortcut_print.activated.connect(self.print)
+
+        self.shortcut_open_file = QShortcut(QKeySequence('Ctrl+o'), self)
+        self.shortcut_open_file.activated.connect(self.open_file)
+
+        self.shortcut_save_page = QShortcut(QKeySequence('Ctrl+s'), self)
+        self.shortcut_save_page.activated.connect(self.save_page)
+
+        self.shortcut_view_source_code = QShortcut(
+            QKeySequence('Ctrl+u'), self)
+        self.shortcut_view_source_code.activated.connect(
+            self.view_source_code)
+
     def mousePressEvent(self, event):
         self.dragPos = event.globalPos()
 
-
 # SPLASH SCREEN
+
+
 class SplashScreen(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
