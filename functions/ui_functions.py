@@ -6,6 +6,7 @@ with open('config.json') as file:
 
 GLOBAL_STATE = 0 if data["maximized"] else 1
 
+
 class UIFunctions(Browser):
     def maximize_restore(self):
 
@@ -18,30 +19,31 @@ class UIFunctions(Browser):
 
             GLOBAL_STATE = 1
 
-            self.ui.verticalLayout.setContentsMargins(0,0,0,0)
+            self.ui.verticalLayout.setContentsMargins(0, 0, 0, 0)
 
-            self.ui.bottom_frame.setStyleSheet("background-color: rgb(45,45,45); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px")
+            self.ui.bottom_frame.setStyleSheet(
+                "background-color: rgb(45,45,45); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px")
             self.ui.title_frame.setStyleSheet("QFrame#title_frame {\n"
-"    background-color: rgb(20, 20, 20); border-top-right-radius: 0px; border-top-left-radius: 0px\n"
-"}\n"
-"\n"
-"QPushButton {\n"
-"    background-color: rgba(0,0,0,0);\n"
-"    color: rgb(144, 144, 144);\n"
-"    font: bold;\n"
-"    font-size: 15px;\n"
-"    font-family: entypo;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    color: #E8960C;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    color: #FF8000;\n"
-"    padding-left: 5px;\n"
-"    padding-top: 5px;\n"
-"}")
+                                              "    background-color: rgb(20, 20, 20); border-top-right-radius: 0px; border-top-left-radius: 0px\n"
+                                              "}\n"
+                                              "\n"
+                                              "QPushButton {\n"
+                                              "    background-color: rgba(0,0,0,0);\n"
+                                              "    color: rgb(144, 144, 144);\n"
+                                              "    font: bold;\n"
+                                              "    font-size: 15px;\n"
+                                              "    font-family: entypo;\n"
+                                              "}\n"
+                                              "\n"
+                                              "QPushButton:hover {\n"
+                                              "    color: #E8960C;\n"
+                                              "}\n"
+                                              "\n"
+                                              "QPushButton:pressed {\n"
+                                              "    color: #FF8000;\n"
+                                              "    padding-left: 5px;\n"
+                                              "    padding-top: 5px;\n"
+                                              "}")
 
             with open('config.json', 'w+') as outfile:
                 data["maximized"] = True
@@ -56,41 +58,45 @@ class UIFunctions(Browser):
                 data["maximized"] = False
                 json.dump(data, outfile)
 
-            self.ui.verticalLayout.setContentsMargins(10,10,10,10)
+            self.ui.verticalLayout.setContentsMargins(10, 10, 10, 10)
 
-            self.ui.bottom_frame.setStyleSheet("background-color: rgb(45,45,45); border-bottom-left-radius: 20px; border-bottom-right-radius: 20px")
+            self.ui.bottom_frame.setStyleSheet(
+                "background-color: rgb(45,45,45); border-bottom-left-radius: 20px; border-bottom-right-radius: 20px")
             self.ui.title_frame.setStyleSheet("QFrame#title_frame {\n"
-"    background-color: rgb(20, 20, 20); border-top-right-radius: 20px; border-top-left-radius: 20px\n"
-"}\n"
-"\n"
-"QPushButton {\n"
-"    background-color: rgba(0,0,0,0);\n"
-"    color: rgb(144, 144, 144);\n"
-"    font: bold;\n"
-"    font-size: 15px;\n"
-"    font-family: entypo;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    color: #E8960C;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    color: #FF8000;\n"
-"    padding-left: 5px;\n"
-"    padding-top: 5px;\n"
-"}")
+                                              "    background-color: rgb(20, 20, 20); border-top-right-radius: 20px; border-top-left-radius: 20px\n"
+                                              "}\n"
+                                              "\n"
+                                              "QPushButton {\n"
+                                              "    background-color: rgba(0,0,0,0);\n"
+                                              "    color: rgb(144, 144, 144);\n"
+                                              "    font: bold;\n"
+                                              "    font-size: 15px;\n"
+                                              "    font-family: entypo;\n"
+                                              "}\n"
+                                              "\n"
+                                              "QPushButton:hover {\n"
+                                              "    color: #E8960C;\n"
+                                              "}\n"
+                                              "\n"
+                                              "QPushButton:pressed {\n"
+                                              "    color: #FF8000;\n"
+                                              "    padding-left: 5px;\n"
+                                              "    padding-top: 5px;\n"
+                                              "}")
 
     def UiDefinitions(self):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
-        self.ui.btn_maximize.clicked.connect(lambda: UIFunctions.maximize_restore(self))
+        self.ui.btn_maximize.clicked.connect(
+            lambda: UIFunctions.maximize_restore(self))
 
         self.ui.btn_minimize.clicked.connect(lambda: self.showMinimized())
 
         self.ui.btn_close.clicked.connect(lambda: self.close())
 
+        self.sizegrip = QSizeGrip(self.ui.resize_frame)
+        self.sizegrip.setStyleSheet("QSizeGrip {width: 10px; height: 10px; margin: 5px; border-radius: 5px;} QSizeGrip:hover {background-color: rgb(70, 60, 50)}")
+
     def returnStatus(self):
         return GLOBAL_STATE
-        
