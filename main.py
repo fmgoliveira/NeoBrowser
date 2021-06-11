@@ -36,22 +36,22 @@ class Options(QMainWindow):
         self.close()
 
     def add_tab(self):
-        pass
+        Browser.add_tab(self)
 
     def print(self):
-        pass
+        Browser.print(self)
 
     def open_file(self):
-        pass
+        Browser.open_file(self)
 
     def save_page(self):
-        pass
+        Browser.save_page(self)
 
     def view_source_code(self):
-        pass
+        Browser.view_source_code(self)
 
     def about(self):
-        pass
+        AboutFunctions.about(self)
 
     def __init__(self):
         QMainWindow.__init__(self)
@@ -120,50 +120,38 @@ class Browser(QMainWindow):
         self.options = Options()
         self.options.show()
 
-    def tab_open_click(self, i):
-        print('here')
-        if i == -1:
-            self.add_tab()
-
-    def current_tab_changed(self, i):
+    def tab_open_click(self):
         pass
 
-    def close_current_tab(self, i):
-        if self.ui.tabWidget.count() < 2:
-            self.ui.tabWidget.removeTab(i)
-            self.add_tab()
-
-        self.tabs.removeTab(i)
-
-    def previous(self):
-        pass
-
-    def add_tab(self):
-        pass
+    def current_tab_changed(self):
+        TabFunctions.currentTabChanged(self)
 
     def close_tab(self):
-        pass
+        TabFunctions.closeTab(self)
+
+    def add_tab(self):
+        TabFunctions.addTab(self)
 
     def back_page(self):
-        pass
+        TabFunctions.previousPage(self)
 
     def next_page(self):
-        pass
+        TabFunctions.nextPage(self)
 
     def reload(self):
-        pass
+        TabFunctions.reloadPage(self)
 
     def print(self):
-        pass
+        TabFunctions.printPage(self)
 
     def open_file(self):
-        pass
+        FilesFunctions.openFile(self)
 
     def save_page(self):
-        pass
+        FilesFunctions.savePage(self)
 
     def view_source_code(self):
-        pass
+        TabFunctions.viewSourceCode(self)
 
     def __init__(self):
         QMainWindow.__init__(self)
@@ -190,7 +178,7 @@ class Browser(QMainWindow):
 
         self.ui.tabWidget.tabBarDoubleClicked.connect(self.tab_open_click)
         self.ui.tabWidget.currentChanged.connect(self.current_tab_changed)
-        self.ui.tabWidget.tabCloseRequested.connect(self.close_current_tab)
+        self.ui.tabWidget.tabCloseRequested.connect(self.close_tab)
 
         # ==> SHORTCUTS
 
@@ -288,35 +276,6 @@ class SplashScreen(QMainWindow):
 
         # INCREASE COUNTER
         counter += 1
-
-
-class WebEnginePage(QtWebEngineWidgets.QWebEnginePage):
-    def __init__(self, parent=None):
-        super(WebEnginePage, self).__init__(parent)
-        self.featurePermissionRequested.connect(
-            self.handleFeaturePermissionRequested)
-
-    @QtCore.pyqtSlot(QtCore.QUrl, QtWebEngineWidgets.QWebEnginePage.Feature)
-    def handleFeaturePermissionRequested(self, securityOrigin, feature):
-        title = "Permission Request"
-        questionForFeature = {
-            QtWebEngineWidgets.QWebEnginePage.Geolocation: "Allow {feature} to access your location information?",
-            QtWebEngineWidgets.QWebEnginePage.MediaAudioCapture: "Allow {feature} to access your microphone?",
-            QtWebEngineWidgets.QWebEnginePage.MediaVideoCapture: "Allow {feature} to access your webcam?",
-            QtWebEngineWidgets.QWebEnginePage.MediaAudioVideoCapture: "Allow {feature} to lock your mouse cursor?",
-            QtWebEngineWidgets.QWebEnginePage.DesktopVideoCapture: "Allow {feature} to capture video of your desktop?",
-            QtWebEngineWidgets.QWebEnginePage.DesktopAudioVideoCapture: "Allow {feature} to capture audio and video of your desktop?"
-        }
-        question = questionForFeature.get(feature)
-        if question:
-            question = question.format(feature=securityOrigin.host())
-            if QtWidgets.QMessageBox.question(self.view().window(), title, question) == QtWidgets.QMessageBox.Yes:
-                self.setFeaturePermission(
-                    securityOrigin, feature, QtWebEngineWidgets.QWebEnginePage.PermissionGrantedByUser)
-            else:
-                self.setFeaturePermission(
-                    securityOrigin, feature, QtWebEngineWidgets.QWebEnginePage.PermissionDeniedByUser)
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

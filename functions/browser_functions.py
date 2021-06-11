@@ -1,29 +1,41 @@
 from main import *
 
 class TabFunctions(Ui_Browser):
-    def addTab(self, qurl=None, label="Untitled"):
-        if qurl is None:
-            qurl = QUrl('file:///html/home.html')
+    def addTab(self):
+        pass
 
-        browser = QWebEngineView()
-        page = WebEnginePage(browser)
-        browser.setPage(page)
-        browser.setUrl(qurl)
-        page.printRequested.connect(self.printRequested)
-        QtWebEngineWidgets.QWebEngineProfile.defaultProfile(
-        ).downloadRequested.connect(self.on_downloadRequested)
+    def currentTabChanged(self):
+        pass
 
-        i = self.ui.tabWidget.addTab(browser, label)
+    def closeTab(self):
+        pass
 
-        self.ui.tabWidget.setCurrentIndex(i)
+    def previousPage(self):
+        pass
 
-        self.ui.tabWidget.setTabIcon(i, browser.page().icon())
+    def backPage(self):
+        pass
 
-        browser.urlChanged.connect(lambda qurl, browser=browser:
-                                   self.update_urlbar(qurl, browser))
+    def nextPage(self):
+        pass
 
-        browser.loadFinished.connect(lambda _, i=i, browser=browser:
-                                     self.ui.tabWidget.setTabText(i, browser.page().title()))
+    def reloadPage(self):
+        pass
 
-        browser.iconChanged.connect(lambda _, i=i, browser=browser:
-                                     self.ui.tabWidget.setTabIcon(i, browser.icon()))
+    def printPage(self):
+        pass
+
+    def viewSourceCode(self):
+        pass
+
+class FilesFunctions(Ui_Browser):
+    def openFile(self):
+        pass
+
+    def savePage(self):
+        pass
+
+class AboutFunctions(Ui_Browser):
+    def about(self):
+        pass
+
