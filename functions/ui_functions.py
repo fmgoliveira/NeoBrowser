@@ -1,10 +1,8 @@
 from main import *
 import json
 
-with open('config.json') as file:
-    data = json.load(file)
 
-GLOBAL_STATE = 0 if data["maximized"] else 1
+GLOBAL_STATE = 0 
 
 
 class UIFunctions(Browser):
@@ -45,18 +43,18 @@ class UIFunctions(Browser):
                                               "    padding-top: 5px;\n"
                                               "}")
 
-            with open('config.json', 'w+') as outfile:
+            '''with open('config.json', 'w+') as outfile:
                 data["maximized"] = True
-                json.dump(data, outfile)
+                json.dump(data, outfile)'''
 
         else:
             GLOBAL_STATE = 0
             self.showNormal()
             self.resize(self.width()+1, self.height()+1)
 
-            with open('config.json', 'w+') as outfile:
+            '''with open('config.json', 'w+') as outfile:
                 data["maximized"] = False
-                json.dump(data, outfile)
+                json.dump(data, outfile)'''
 
             self.ui.verticalLayout.setContentsMargins(10, 10, 10, 10)
 
