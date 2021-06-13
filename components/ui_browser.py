@@ -213,6 +213,7 @@ class Ui_Browser(object):
 "\n"
 "QTabWidget::tab-bar:top {\n"
 "    top: 1px;\n"
+"    border: none;\n"
 "}\n"
 "\n"
 "QTabWidget::tab-bar:bottom {\n"
