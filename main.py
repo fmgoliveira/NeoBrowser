@@ -173,12 +173,12 @@ class Browser(QMainWindow):
 
         self.ui.frame.mouseMoveEvent = moveWindow
 
-        self.ui.btn_options.clicked.connect(self.open_options)
+        '''self.ui.btn_options.clicked.connect(self.open_options)
         self.ui.btn_previous.clicked.connect(self.back_page)
 
         self.ui.tabWidget.tabBarDoubleClicked.connect(self.tab_open_click)
         self.ui.tabWidget.currentChanged.connect(self.current_tab_changed)
-        self.ui.tabWidget.tabCloseRequested.connect(self.close_tab)
+        self.ui.tabWidget.tabCloseRequested.connect(self.close_tab)'''
 
         # ==> SHORTCUTS
 
