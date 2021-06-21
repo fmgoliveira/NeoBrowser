@@ -365,15 +365,21 @@ class Ui_Browser(object):
         self.btn_close.setText(_translate("MainWindow", "X"))
         self.btn_previous.setToolTip(_translate("MainWindow", "Go to previous page"))
         self.btn_previous.setText(_translate("MainWindow", "⬅"))
+        self.btn_previous.clicked.connect(lambda: self.tabs.currentWidget().back())
         self.btn_next.setToolTip(_translate("MainWindow", "Go to next page"))
         self.btn_next.setText(_translate("MainWindow", "➡"))
+        self.btn_next.clicked.connect(lambda: self.tabs.currentWidget().forward())
         self.btn_reload.setToolTip(_translate("MainWindow", "Reload page"))
         self.btn_reload.setText(_translate("MainWindow", "⟲"))
+        self.btn_reload.clicked.connect(lambda: self.tabs.currentWidget().reload())
         self.btn_home.setToolTip(_translate("MainWindow", "Open start page"))
         self.btn_home.setText(_translate("MainWindow", "⌂"))
+        self.btn_home.clicked.connect(lambda: self.navigate_home())
         self.btn_options.setToolTip(_translate("MainWindow", "Options"))
         self.btn_options.setText(_translate("MainWindow", ""))
         
+    def navigate_home(self):
+        self.tabs.currentWidget().setUrl(QUrl("https://google.com/"))
 
     def close_current_tab(self, i):
         if self.tabs.count()<2:
@@ -438,3 +444,5 @@ class Ui_Browser(object):
             q.setScheme("http")
 
         self.tabs.currentWidget().setUrl(q)
+
+import components.file_rc
