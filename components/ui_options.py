@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from components.ui_browser import Ui_Browser
 
 
 class Ui_Options(object):
@@ -156,6 +157,11 @@ class Ui_Options(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        self.btn_addTab.clicked.connect(self.add_tab)
+
+    def add_tab(self):
+            Ui_Browser.tab_open_doubleclick(self)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
