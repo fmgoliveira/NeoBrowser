@@ -351,7 +351,7 @@ class Ui_Browser(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        self.add_new_tab(QUrl('https://www.google.com/'), 'UNTITLED')
+        self.add_new_tab(QUrl('file:///html/home.html'), 'UNTITLED')
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -379,7 +379,7 @@ class Ui_Browser(object):
         self.btn_options.setText(_translate("MainWindow", ""))
         
     def navigate_home(self):
-        self.tabs.currentWidget().setUrl(QUrl("https://google.com/"))
+        self.tabs.currentWidget().setUrl(QUrl("file:///html/home.html"))
 
     def close_current_tab(self, i):
         if self.tabs.count()<2:
@@ -399,7 +399,7 @@ class Ui_Browser(object):
     def add_new_tab(self, qurl=None, label="UNTITLED"):
 
         if qurl is None:
-            qurl = QUrl('https://www.google.com/')
+            qurl = QUrl('file:///html/home.html')
 
         browser = QWebEngineView()
         page = WebEnginePage(browser)
